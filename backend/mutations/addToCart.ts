@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { KeystoneContext, SessionStore } from '@keystone-next/types';
 import { CartItem } from '../schemas/CartItem';
 import { Session } from '../types';
