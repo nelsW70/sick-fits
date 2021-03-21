@@ -13,7 +13,7 @@ const ADD_TO_CART_MUTATION = gql`
 export default function AddToCart({ id }) {
   const [addToCart, { loading }] = useMutation(ADD_TO_CART_MUTATION, {
     variables: { id },
-    awaitRefetchQueries: [{ query: CURRENT_USER_QUERY }],
+    refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
   return (
     <button disabled={loading} type="button" onClick={addToCart}>
