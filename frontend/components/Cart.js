@@ -6,6 +6,7 @@ import formatMoney from '../lib/formatMoney';
 import { useUser } from './User';
 import calcTotalPrice from '../lib/calcTotalPrice';
 import { useCart } from '../lib/cartState';
+import RemoveFromCart from './RemoveFromCart';
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -24,7 +25,6 @@ const CartItemStyles = styled.li`
 function CartItem({ cartItem }) {
   const { product } = cartItem;
   if (!product) return null;
-
   return (
     <CartItemStyles>
       <img
@@ -35,12 +35,13 @@ function CartItem({ cartItem }) {
       <div>
         <h3>{product.name}</h3>
         <p>
-          {formatMoney(product.price * cartItem.quantity)} -{' '}
+          {formatMoney(product.price * cartItem.quantity)}-
           <em>
             {cartItem.quantity} &times; {formatMoney(product.price)} each
           </em>
         </p>
       </div>
+      <RemoveFromCart id={cartItem.id} />
     </CartItemStyles>
   );
 }
@@ -53,9 +54,7 @@ export default function Cart() {
     <CartStyles open={cartOpen}>
       <header>
         <Supreme>{me.name}'s Cart</Supreme>
-        <CloseButton type="button" onClick={closeCart}>
-          &times;
-        </CloseButton>
+        <CloseButton onClick={closeCart}>&times;</CloseButton>
       </header>
       <ul>
         {me.cart.map(cartItem => (
