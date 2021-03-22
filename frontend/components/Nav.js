@@ -22,7 +22,7 @@ export default function Nav() {
             <CartCount
               count={user.cart.reduce(
                 (tally, cartItem) => tally + cartItem.quantity,
-                0,
+                0
               )}
             />
           </button>
